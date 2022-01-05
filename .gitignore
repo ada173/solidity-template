@@ -80,6 +80,7 @@ node_modules
 coverage
 coverage.json
 typechain
+types
 *.lock
 
 #Hardhat files

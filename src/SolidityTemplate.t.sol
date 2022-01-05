@@ -6,17 +6,17 @@ import "ds-test/test.sol";
 import "./SolidityTemplate.sol";
 
 contract SolidityTemplateTest is DSTest {
-    SolidityTemplate template;
+	SolidityTemplate template;
 
-    function setUp() public {
-        template = new SolidityTemplate();
-    }
+	function setUp() public {
+		template = new SolidityTemplate();
+	}
 
-    function testFail_basic_sanity() public {
-        assertTrue(false);
-    }
+	function testFail_basic_sanity() public {
+		assertTrue(false);
+	}
 
-    function test_basic_sanity() public {
-        assertTrue(true);
-    }
+	function test_basic_sanity() public {
+		assertTrue(true);
+	}
 }
