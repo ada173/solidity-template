@@ -74,3 +74,14 @@ typings/
 
 # FuseBox cache
 .fusebox/
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+*.lock
+
+#Hardhat files
+cache
+artifacts
