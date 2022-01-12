@@ -1,7 +1,7 @@
 # Solidity template with hardhat and dapptools
 
-This is a solidity template with hardhat and dapp tools.
-- put the solidity contracts files are under `src/contracts`
+This is a solidity template with hardhat and dapptools.
+- put the solidity contracts files under `src/contracts`
 - put the dapptool related test files under `src/test`
 
 for import modules errors,  update file `remappings`, for example:
