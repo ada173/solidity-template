@@ -22,7 +22,7 @@ export const networks: NetworksUserConfig = {
 	},
 
 	ropsten: {
-		chainId:3,
+		chainId: 3,
 		url: `https://ropsten.infura.io/v3/${process.env.INFURA_KEY}`,
 		accounts: {
 			mnemonic: process.env.MNEMONIC,
