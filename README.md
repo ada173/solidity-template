@@ -10,5 +10,5 @@ for import modules errors,  update file `remappings`, for example:
 @chainlink=node_modules/@chainlink/
 ```
 
-try run `dapp update` if there is ds-test under `lib` folder
+try run `dapp update` if there is no ds-test under `lib` folder
 
