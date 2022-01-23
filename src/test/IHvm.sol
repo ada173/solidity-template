@@ -3,77 +3,27 @@ pragma solidity ^0.8.2;
 
 // used at address 0x7109709ECfa91a80626fF3989D68f67F5b1DD12D
 interface IHvm {
-	    // Set block.timestamp (newTimestamp)
-    function warp(uint256) external;
+	/// @dev  Sets the block timestamp to x
+	function warp(uint256 x) external;
 
-    // Set block.height (newHeight)
-    function roll(uint256) external;
+	/// @dev Sets the block number to x
+	function roll(uint256 x) external;
 
-    // Loads a storage slot from an address (who, slot)
-    function load(address, bytes32) external returns (bytes32);
+	/// @dev Sets the slot loc of contract c to val
+	function load(address c, bytes32 loc) external returns (bytes32 val);
 
-    // Stores a value to an address' storage slot, (who, slot, value)
-    function store(
-        address,
-        bytes32,
-        bytes32
-    ) external;
+	/// @dev Signs the digest using the private key sk. Note that signatures produced via hevm.sign will leak the private key.
+	function sign(uint256 sk, bytes32 digest)
+		external
+		returns (
+			uint8 v,
+			bytes32 r,
+			bytes32 s
+		);
 
-    // Signs data, (privateKey, digest) => (r, v, s)
-    function sign(uint256, bytes32)
-        external
-        returns (
-            uint8,
-            bytes32,
-            bytes32
-        );
+	/// @dev Derives an ethereum address from the private key sk. Note that hevm.addr(0) will fail with BadCheatCode as 0 is an invalid ECDSA private key.
+	function addr(uint256 sk) external returns (address addr);
 
-    // Gets address for a given private key, (privateKey) => (address)
-    function addr(uint256) external returns (address);
-
-    // Performs a foreign function call via terminal, (stringInputs) => (result)
-    function ffi(string[] calldata) external returns (bytes memory);
-
-    // Performs the next smart contract call with specified `msg.sender`, (newSender)
-    function prank(address) external;
-
-    // Performs all the following smart contract calls with specified `msg.sender`, (newSender)
-    function startPrank(address) external;
-
-    // Stop smart contract calls using the specified address with prankStart()
-    function stopPrank() external;
-
-    // Sets an address' balance, (who, newBalance)
-    function deal(address, uint256) external;
-
-    // Sets an address' code, (who, newCode)
-    function etch(address, bytes calldata) external;
-
-    // Expects an error on next call
-    function expectRevert(bytes calldata) external;
-
-    // Expects the next emitted event. Params check topic 1, topic 2, topic 3 and data are the same.
-    function expectEmit(
-        bool,
-        bool,
-        bool,
-        bool
-    ) external;
-
-    // Mocks a call to an address, returning specified data.
-    // Calldata can either be strict or a partial match, e.g. if you only
-    // pass a Solidity selector to the expected calldata, then the entire Solidity
-    // function will be mocked.
-    function mockCall(
-        address,
-        bytes calldata,
-        bytes calldata
-    ) external;
-
-    // Clears all mocked calls
-    function clearMockedCalls() external;
-
-    // Expect a call to an address with the specified calldata.
-    // Calldata can either be strict or a partial match
-    function expectCall(address, bytes calldata) external;
+	/// @dev Executes the arguments as a command in the system shell and returns stdout. Expects abi encoded values to be returned from the shell or an error will be thrown. Note that this cheatcode means test authors can execute arbitrary code on user machines as part of a call to dapp test, for this reason all calls to ffi will fail unless the --ffi flag is passed.
+	function ffi(string[] calldata) external returns (bytes memory);
 }
